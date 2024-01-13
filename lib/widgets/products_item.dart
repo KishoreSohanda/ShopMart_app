@@ -1,40 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:myshop_app/screens/product_detail_screen.dart';
-// import '../screens/product_detail_screen.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/product.dart';
+import '../screens/product_detail_screen.dart';
 
 class ProductsItem extends StatelessWidget {
-  final String id;
-  final String title;
-  final String imageUrl;
-
-  const ProductsItem(
-      {required this.id,
-      required this.imageUrl,
-      required this.title,
-      super.key});
+  const ProductsItem({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final product = Provider.of<Product>(context, listen: false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(10),
       child: GridTile(
         footer: GridTileBar(
-          title: Text(title, textAlign: TextAlign.center),
+          title: Text(product.title, textAlign: TextAlign.center),
           backgroundColor: Colors.black87,
-          leading: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.favorite),
-              color: Theme.of(context).colorScheme.secondary),
+          leading: Consumer<Product>(
+            builder: (ctx, product, child) => IconButton(
+                onPressed: () {
+                  product.toggleFavoriteStatus();
+                },
+                icon: product.isFavorite
+                    ? const Icon(Icons.favorite)
+                    : const Icon(Icons.favorite_border),
+                color: Theme.of(context).colorScheme.secondary),
+          ),
           trailing: IconButton(
               onPressed: () {},
               icon: const Icon(Icons.shopping_cart),
               color: Theme.of(context).colorScheme.secondary),
         ),
         child: GestureDetector(
-          child: Image.network(imageUrl, fit: BoxFit.cover),
+          child: Image.network(product.imageUrl, fit: BoxFit.cover),
           onDoubleTap: () {
-            Navigator.of(context)
-                .pushNamed(ProductDetailScreen.routeName, arguments: id);
+            Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
+                arguments: product.id);
           },
         ),
       ),
