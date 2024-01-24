@@ -6,6 +6,7 @@ import '../screens/cart_screen.dart';
 import '../providers/cart.dart';
 import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
+import '../providers/products.dart';
 
 enum FilterOptions { favorites, all }
 
@@ -18,6 +19,35 @@ class ProductsOverviewScreen extends StatefulWidget {
 
 class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   var _showOnlyFavorites = false;
+  var _isInit = true;
+  var _isLoading = false;
+  @override
+  void initState() {
+    // Won't work because context does not works in initState
+    // Provider.of<Products>(context).fetchAndSetProduct();
+
+    // this is a hack to use context in initState()
+    // Future.delayed(Duration.zero)
+    //     .then((_) => Provider.of<Products>(context).fetchAndSetProduct());
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      setState(() {
+        _isLoading = true;
+      });
+      Provider.of<Products>(context).fetchAndSetProduct().then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
+    }
+    _isInit = false;
+    super.didChangeDependencies();
+  }
+
   @override
   Widget build(context) {
     return Scaffold(
@@ -66,7 +96,11 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
         ],
       ),
       drawer: const AppDrawer(),
-      body: ProductsGrid(_showOnlyFavorites),
+      body: _isLoading
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : ProductsGrid(_showOnlyFavorites),
     );
   }
 }
