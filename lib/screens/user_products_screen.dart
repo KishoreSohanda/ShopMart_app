@@ -30,6 +30,7 @@ class UserProductsScreen extends StatelessWidget {
         ],
       ),
       body: RefreshIndicator(
+        color: Theme.of(context).colorScheme.secondary,
         onRefresh: () => _refreshProducts(context),
         child: Padding(
           padding: const EdgeInsets.all(8),
