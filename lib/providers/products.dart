@@ -7,6 +7,8 @@ import 'product.dart';
 import '../models/http_exception.dart';
 
 class Products with ChangeNotifier {
+  final String? authToken;
+  Products(this.authToken, this._items);
   List<Product> _items = [
     // Product(
     //   id: 'p1',
@@ -65,7 +67,7 @@ class Products with ChangeNotifier {
   // }
   Future<void> fetchAndSetProduct() async {
     final url = Uri.parse(
-        'https://flutter-apps-4178b-default-rtdb.firebaseio.com/products.json');
+        'https://flutter-apps-4178b-default-rtdb.firebaseio.com/products.json?auth=$authToken');
     try {
       final response = await http.get(url);
       // print(json.decode(response.body));
