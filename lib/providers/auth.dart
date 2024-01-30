@@ -64,7 +64,7 @@ class Auth with ChangeNotifier {
       final userData = json.encode({
         'token': _token,
         'userId': _userId,
-        'expiryDate': _expiryDate!.toIso8601String()
+        'expiryDate': _expiryDate!.toIso8601String(),
       });
       prefs.setString('userData', userData);
     } catch (error) {
@@ -94,7 +94,7 @@ class Auth with ChangeNotifier {
     }
     _token = extractedUserData['token'] as String?;
     _userId = extractedUserData['userId'] as String?;
-    _expiryDate = extractedUserData['expiryDate'] as DateTime?;
+    _expiryDate = DateTime.parse(extractedUserData['expiryDate']);
     notifyListeners();
     _autoLogout();
     return true;

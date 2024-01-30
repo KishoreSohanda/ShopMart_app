@@ -56,7 +56,6 @@ class MyApp extends StatelessWidget {
                               ConnectionState.waiting
                           ? const SplashScreen()
                           : const AuthScreen(),
-                          
                 )
           // home: const ProductsOverviewScreen(),
           // home: const UserProductsScreen(),
