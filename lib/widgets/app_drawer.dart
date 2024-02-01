@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+// import '../helpers/custom_route.dart';
 import '../screens/user_products_screen.dart';
 import '../screens/orders_screen.dart';
 import '../providers/auth.dart';
@@ -14,10 +15,11 @@ class AppDrawer extends StatelessWidget {
         child: Column(
       children: [
         AppBar(
+          foregroundColor: Colors.white,
+          backgroundColor: Theme.of(context).colorScheme.primary,
           title: const Text('Hello Friend!'),
           automaticallyImplyLeading: false,
         ),
-        const Divider(),
         ListTile(
           leading: const Icon(Icons.shop),
           title: const Text('Shop'),
@@ -31,6 +33,9 @@ class AppDrawer extends StatelessWidget {
           title: const Text('Orders'),
           onTap: () {
             Navigator.of(context).pushReplacementNamed(OrdersScreen.routeName);
+            // Navigator.of(context).pushReplacement(CustomRoute(
+            //   builder: (context) => const OrdersScreen(),
+            // ));
           },
         ),
         const Divider(),
@@ -52,6 +57,7 @@ class AppDrawer extends StatelessWidget {
             Provider.of<Auth>(context, listen: false).logOut();
           },
         ),
+        const Divider(),
       ],
     ));
   }

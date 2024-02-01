@@ -216,6 +216,7 @@ class _AuthCardState extends State<AuthCard>
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     return Card(
+      color: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),

@@ -52,6 +52,8 @@ class _ProductsOverviewScreenState extends State<ProductsOverviewScreen> {
   Widget build(context) {
     return Scaffold(
       appBar: AppBar(
+        foregroundColor: Colors.white,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: const Text(
           'MyShop',
         ),

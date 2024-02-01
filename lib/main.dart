@@ -15,6 +15,8 @@ import './providers/orders.dart';
 import './providers/cart.dart';
 import './providers/auth.dart';
 
+import './helpers/custom_route.dart' as helpers;
+
 void main() {
   runApp(const MyApp());
 }
@@ -46,7 +48,13 @@ class MyApp extends StatelessWidget {
               primarySwatch: Colors.purple,
               colorScheme: const ColorScheme.light().copyWith(
                   primary: Colors.purple, secondary: Colors.deepOrange),
-              fontFamily: 'Lato'),
+              // colorScheme: ColorScheme.fromSwatch(
+              //     primarySwatch: Colors.purple, accentColor: Colors.deepOrange),
+              fontFamily: 'Lato',
+              pageTransitionsTheme: PageTransitionsTheme(builders: {
+                TargetPlatform.android: helpers.CutomePageTransitionBuilder(),
+                TargetPlatform.iOS: helpers.CutomePageTransitionBuilder(),
+              })),
           home: authValue.isAuth
               ? const ProductsOverviewScreen()
               : FutureBuilder<bool>(
