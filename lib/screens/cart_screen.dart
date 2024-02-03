@@ -32,8 +32,12 @@ class CartScreen extends StatelessWidget {
                   ),
                   const Spacer(),
                   Chip(
+                    side: BorderSide.none,
+                    shape: BeveledRectangleBorder(
+                      borderRadius: BorderRadius.circular(2),
+                    ),
                     label: Text(
-                      '\$${cart.totalAmount.toStringAsFixed(2)}',
+                      '₹${cart.totalAmount.toStringAsFixed(2)}',
                       style: TextStyle(
                           color: Theme.of(context)
                               .primaryTextTheme

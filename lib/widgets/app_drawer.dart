@@ -17,7 +17,7 @@ class AppDrawer extends StatelessWidget {
         AppBar(
           foregroundColor: Colors.white,
           backgroundColor: Theme.of(context).colorScheme.primary,
-          title: const Text('Hello Friend!'),
+          title: const Text('Manage'),
           automaticallyImplyLeading: false,
         ),
         ListTile(

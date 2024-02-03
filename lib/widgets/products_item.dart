@@ -62,7 +62,7 @@ class ProductsItem extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          onDoubleTap: () {
+          onTap: () {
             Navigator.of(context).pushNamed(ProductDetailScreen.routeName,
                 arguments: product.id);
           },

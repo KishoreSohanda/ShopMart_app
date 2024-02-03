@@ -24,11 +24,18 @@ class ProductDetailScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            foregroundColor: Colors.white,
+            backgroundColor: Theme.of(context).colorScheme.primary,
             expandedHeight: 300,
             pinned: true,
             flexibleSpace: FlexibleSpaceBar(
+              centerTitle: true,
+              titlePadding: const EdgeInsets.symmetric(
+                vertical: 15,
+              ),
               title: Text(
                 loadedProduct.title,
+                textAlign: TextAlign.center,
               ),
               background: Hero(
                 tag: loadedProduct.id,
@@ -45,7 +52,7 @@ class ProductDetailScreen extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                '\$${loadedProduct.price}',
+                '₹${loadedProduct.price}',
                 style: const TextStyle(color: Colors.grey, fontSize: 20),
                 textAlign: TextAlign.center,
               ),

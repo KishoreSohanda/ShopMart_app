@@ -45,7 +45,6 @@ class MyApp extends StatelessWidget {
         builder: (context, authValue, child) => MaterialApp(
           title: 'MyShop',
           theme: ThemeData(
-              primarySwatch: Colors.purple,
               colorScheme: const ColorScheme.light().copyWith(
                   primary: Colors.purple, secondary: Colors.deepOrange),
               // colorScheme: ColorScheme.fromSwatch(

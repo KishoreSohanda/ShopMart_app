@@ -51,6 +51,7 @@ class UserProductItem extends StatelessWidget {
                             await Provider.of<Products>(context, listen: false)
                                 .deleteProduct(id);
                           } catch (error) {
+                            // ignore: use_build_context_synchronously
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
                                 content: Text(
@@ -60,6 +61,7 @@ class UserProductItem extends StatelessWidget {
                               ),
                             );
                           } finally {
+                            // ignore: use_build_context_synchronously
                             Navigator.of(context).pop();
                           }
                         },

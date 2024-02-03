@@ -102,6 +102,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
         await Provider.of<Products>(context, listen: false)
             .addProduct(_editedProduct);
       } catch (error) {
+        // ignore: use_build_context_synchronously
         await showDialog(
           context: context,
           builder: (context) => AlertDialog(
